@@ -24,6 +24,7 @@
 package com.pmovil.toast;
 
 import com.codename1.system.NativeLookup;
+import com.codename1.ui.Dialog;
 
 /**
  * Simple class to use native toast functionality
@@ -48,11 +49,13 @@ public class Toast {
         if (peer == null) {
             peer = (NativeToast)NativeLookup.create(NativeToast.class);
             if ( peer == null ) {
-                throw new RuntimeException("Toast is not implemented yet in this platform.");
+               // throw new RuntimeException("Toast is not implemented yet in this platform.");
+                Dialog.show("Toast", text, "OK", null);
             }
         }
         if ( !peer.isSupported() ){
-            throw new RuntimeException("Toast is not supported in this platform.");
+           // throw new RuntimeException("Toast is not supported in this platform.");
+             Dialog.show("Toast", text, "OK", null);
         }
         contextValue = context;
         Toast toast = new Toast(text, duration);
